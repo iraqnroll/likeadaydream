@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="theme-color" content="#E2FAF9" />
+	<meta name="description" content="A gap between the heart and the mind" />
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="google-site-verification" content="Yn_X0a7RyXs1GuMzbXL2g3P-tH1A29W_6yyG6M8oBnk" />
+	<link rel="shortcut icon" type="image/x-icon" href="/static/sky.ico" />
+	<link rel="stylesheet" type="text/css" href="/static/style.css" />
+	<link rel="alternate" type="application/rss+xml" href="/rss.xml" title="like a daydream" />
+	<script type="text/javascript" src="/static/script.js"></script>
+	<title>Home | like a daydream</title>
+</head>
+<body>
+<audio hidden="hidden" id="bgm"></audio>
+<div class="navbar">
+	<a href="/">
+		<span id="avatarDiscord"></span>
+	</a>
+	<div class="container">
+		<div class="title"><a href="/">like a daydream</a></div>
+		<div class="subtitle" id="subtitle">A gap between the heart and the mind</div>
+		<ul>
+			<li><a id="bgm_toggle" href="javascript:play()">♫ play</a></li>
+			<li><a href="https://github.com/iraqnroll">my github</a></li>
+			<li><a href="/notes/dotfiles.htm">my dotfiles</a></li>
+			<li><a href="/notes/">my notes</a></li>
+			<li><a href="/notes/useful-links.htm">useful links</a></li>
+			<li><a href="/rss.xml">rss <img alt="rss" class="icon" src="/static/button/rss.svg" /></a></li>
+		</ul>
+	</div>
+</div>
+<div class="cloud-cover"></div>
+<div class="content"><!--kagami v0.6.5 — static microblog processor-->
+<h1>Home<span id="Home"></span></h1>
+<noscript>
+    <p>
+        <em>You have JavaScript disabled, dynamic content and multimedia will not work.</em>
+    </p>
+</noscript>
+<h2>What is this place ?<span id="What-is-this-place-"></span></h2>
+<p>This is my little corner of the internet where I’ll be posting stuff that I’m working on, ranging from BMS or other VSRG’s, blogs, rants to various programming, musical or real-life projects.</p>
+<h2>Little bit about the website<span id="Little-bit-about-the-website"></span></h2>
+<p>The website itself is a simple collection of markdown documents that get converted to static HTML pages by a tiny static microblog processor - <a href="https://github.com/microsounds/kagami"><strong>kagami</strong></a>. No fancy backends, no bloated javascript frameworks, just Web 1.0-esque blogposting like God intended!</p>
+<h2>Contact me<span id="Contact-me"></span></h2>
+<p>By far the quickest way to get in touch with me is through Discord. Thanks to lanyard API, the website can fetch my discord presence in real time !<br />
+<span id="discord-name"></span> is currently : <span id="discord-status"></span>.</p>
+<!-- TODO: if this gets any bigger this should be it's own .js file -->
+<script type="text/javascript">
+/* <![CDATA[ */
+	/* fetch discord presence with lanyard API
+	 * https://github.com/Phineas/lanyard
+	 */
+	uid = '127484031615893504';
+	api = 'https://api.lanyard.rest/v1/users/' + uid;
+	req = new XMLHttpRequest();
+	req.open('GET', api, true);
+	req.onload = function() {
+		if (this.status == 200) {
+			/* name and avatar */
+			var user = JSON.parse(this.response).data.discord_user;
+			document.getElementById('discord-name').innerHTML +=
+				'<em><a title="Click to add me directly!" href="https://discord.com/users/' + uid + '">' +
+				'<img src="https://cdn.discordapp.com/avatars/' + uid +
+				'/' + user.avatar + '.png?size=40" /> ' +
+				user.username + ((!!!user.discriminator) ? '#' + user.discriminator : '') + '</a></em>';
+
+            document.getElementById('avatarDiscord').innerHTML +=
+                '<em><a title="Click to add me directly!" href="https://discord.com/users/' + uid + '">' +
+				'<img src="https://cdn.discordapp.com/avatars/' + uid +
+				'/' + user.avatar + '.png" /> ' +
+				user.username + ((!!!user.discriminator) ? '#' + user.discriminator : '') + '</a></em>';
+
+			/* presence */
+			var f = document.getElementById('discord-status');
+			switch (JSON.parse(this.response).data.discord_status) {
+				case 'online': f.innerHTML += '<span class="blink" style="color: #BDFFB9;"><strong>online</strong></span>'; break;
+				case 'idle': f.innerHTML += '<span class="blink" style="color: #FFFAB9;"><strong>idle</strong></span>'; break;
+				case 'dnd': f.innerHTML += '<span class="blink" style="color: #FFB9CF;"><strong>busy</strong></span>'; break;
+				case 'offline': f.innerHTML += '<strong>offline</strong>'; return;
+			}
+
+			/* activities
+			 * https://discord.com/developers/docs/game-sdk/activities
+			 */
+			var act = JSON.parse(this.response).data.activities;
+			if (act.length > 0)
+				f.innerHTML += ', last seen';
+			else {
+				f.innerHTML += ' and not doing anything';
+				return;
+			}
+			for (var i in act) {
+				switch (act[i].type) {
+					case 0: f.innerHTML += ' playing '; break;
+					case 1: f.innerHTML += ' streaming '; break;
+					case 2: f.innerHTML += ' listening to '; break;
+					case 3: f.innerHTML += ' watching '; break;
+					case 5: f.innerHTML += ' competing in '; break; /* ??? */
+					/* custom status */
+					case 4: f.innerHTML += ' saying '; act[i].name = '"' + act[i].state + '"'; break;
+				}
+				f.innerHTML += '<em><strong>' + act[i].name + '</strong></em>';
+
+				/* discord rich presence for game activities */
+				switch (act[i].type) {
+					case 0:
+						if (act[i].details)
+							f.innerHTML += ', ' + act[i].details.charAt(0).toLowerCase() + act[i].details.slice(1);
+						if (act[i].state)
+							f.innerHTML += ', ' + act[i].state.charAt(0).toLowerCase() + act[i].state.slice(1);
+						break;
+				}
+				if (act.length > 1 && i != act.length - 1)
+					f.innerHTML += ' and';
+			}
+		}
+		else
+			document.getElementById('discord-status').innerHTML += 'Lanyard API is down and this feature is broken..';
+	};
+	req.send();
+/* ]]> */
+</script>
+<div class="index">
+</div>
+<hr/>
+<div class="footer">
+	<!-- <span class="right" style="padding-left: 5px">
+		<a title="visitors since 2022" href="https://digits.net">
+			<img style="height: 1.3em;" alt="counter"
+				src="https://counter.digits.net/?counter=%7Bc670b40d-4ee8-9e24-9d82-2ee79a5b1f54%7D&amp;template=simple&amp;background=647975&amp;charset=25" />
+			vistors
+		</a>
+	</span> -->
+	<p>written by &#169; daydreamer32 2024-2024 &lt;<a href="https://github.com/iraqnroll">@github</a>&gt;</p>
+	<p>Powered by <a href="https://github.com/iraqnroll/kagami">kagami v0.6.5 — static microblog processor</a></p>
+</div>
+</div> <!-- end of content -->
+</body>
+</html>

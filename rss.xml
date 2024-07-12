@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<lastBuildDate></lastBuildDate>
+<ttl>1</ttl>
+<generator>kagami v0.6.5 — static microblog processor</generator>
+<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+<atom:link href="https://likeadaydream.lt/rss.xml" rel="self" type="application/rss+xml"/>
+<link>https://likeadaydream.lt</link>
+<title>like a daydream</title>
+<description>A gap between the heart and the mind</description>
+</channel>
+</rss>
+</channel>
+</rss>
+</channel>
+</rss>
+</channel>
+</rss>
+</channel>
+</rss>

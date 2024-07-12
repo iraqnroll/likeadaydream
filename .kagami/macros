@@ -1,0 +1,29 @@
+!/usr/bin/env sh
+
+# execute pre-run scripts
+# will probably make a kagami built-in feature later
+for f in "$DOC_ROOT/.scripts/"*; do echo "Pre-run: '$f'"; $f; done
+
+# unsetting document root will rewrite links starting from /
+unset DOC_ROOT
+DOC_ROOT = "~/Documents/Programming/likeadaydream/"
+AUTHOR='daydreamer32'
+PC_NAME='fungusas'
+SITE_TITLE='like a daydream'
+SITE_DESCRIPTION="A gap between the heart and the mind"
+SITE_HOSTNAME='https://likeadaydream.lt'
+GIT_REMOTE='https://github.com/iraqnroll'
+ACCENT_COLOR='#E2FAF9'
+
+# page elements
+THEMATIC_BREAK='<hr style="width: 40%;"/>'
+
+# copyright years
+YEAR="2024-$(date '+%Y')"
+CC_BY_SA='https://creativecommons.org/licenses/by-sa/4.0'
+GNU_GPL='https://www.gnu.org/licenses/gpl-3.0'
+
+# moonphase date function
+# dark background, invert glyphs
+export TZ='Europe/Vilnius'
+DATE_FUNCTION='moonphase-date -iy'

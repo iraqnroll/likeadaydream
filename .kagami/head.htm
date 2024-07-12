@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="theme-color" content="{ACCENT_COLOR}" />
+	<meta name="description" content="{SITE_DESCRIPTION}" />
+	<meta name="keywords" content="{KEYWORDS}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="google-site-verification" content="Yn_X0a7RyXs1GuMzbXL2g3P-tH1A29W_6yyG6M8oBnk" />
+	<link rel="shortcut icon" type="image/x-icon" href="{DOC_ROOT}/static/sky.ico" />
+	<link rel="stylesheet" type="text/css" href="{DOC_ROOT}/static/style.css" />
+	<link rel="alternate" type="application/rss+xml" href="{DOC_ROOT}/rss.xml" title="{SITE_TITLE}" />
+   <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+      }
+    }
+  </script>
+	<script type="module" src="{DOC_ROOT}/static/script.js"></script>
+	<title>{TITLE} | {SITE_TITLE}</title>
+</head>
+<body>
+<audio hidden="hidden" id="bgm"></audio>
+<div class="navbar">
+	<a href="{DOC_ROOT}/index.htm">
+		<div id="mushroomScene"></div>
+	</a>
+	<div class="container">
+		<div class="title"><a href="{DOC_ROOT}/index.htm">{SITE_TITLE}</a></div>
+		<div class="subtitle" id="subtitle">{SITE_DESCRIPTION}</div>
+		<ul>
+			<li><a href="{GIT_REMOTE}">my github</a></li>
+			<li><a href="{DOC_ROOT}/notes/index.htm">random notes</a></li>
+      <li><a href="{DOC_ROOT}/programming/index.htm">programming blog</a></li>
+			<li><a href="{DOC_ROOT}/notes/useful-links.htm">useful links</a></li>
+			<li><a href="{DOC_ROOT}/rss.xml">rss <img alt="rss" class="icon" src="{DOC_ROOT}/static/button/rss.svg"/></a></li>
+		</ul>
+	</div>
+</div>
+<div class="cloud-cover"></div>
+<div class="content">

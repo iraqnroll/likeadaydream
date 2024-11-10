@@ -59,7 +59,6 @@ hr {
 .content {
     max-width: 800px;
     padding: 10px 30px 10px 30px;
-    //background-color: #0000004d;
     color: var(--text-light);
     text-shadow: 2px 1px var(--text-dark);
 }
@@ -202,6 +201,7 @@ a:hover>* {
 
 .title {
   font-size: x-large;
+  text-align: center;
   font-style: italic;
   border-bottom: 2px groove white;
 }

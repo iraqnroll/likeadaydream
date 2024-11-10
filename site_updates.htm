@@ -19,7 +19,7 @@
     }
   </script>
 	<script type="module" src="/static/script.js"></script>
-	<title>Notes/mini-blogs : | like a daydream</title>
+	<title>Site update backlog : | like a daydream</title>
 </head>
 <body>
 <audio hidden="hidden" id="bgm"></audio>
@@ -40,18 +40,38 @@
 		</ul>
 		<div class="newest_posts_title">
 			Newest posts : 
-			<div class="newest_posts"><ul><li><a href=/useful_links.htm> Links/friends :</a></li><li><a href=/site_updates.htm> Site update backlog :</a></li></ul></div>
+			<div class="newest_posts"><ul><li><a href=/useful_links.htm> Links/friends :</a></li><li><a href=/site_updates.htm> Site update backlog :</a></li><li><a href=/notes/1stMonthOnConstantiam.htm> My first month on Constantiam</a></li></ul></div>
 		</div>
 	</div>
 </div>
 <div class="cloud-cover"></div>
 <div class="content">
 <!--kagami v0.6.5 — static microblog processor-->
-<h1>Notes/mini-blogs :<span id="Notesmini-blogs-:"></span></h1>
-<p>Blogs/notes on various topics, sorted by date of creation.</p>
-<hr />
-<div class="index">
-</div>
+<h1>Site update backlog :<span id="Site-update-backlog-:"></span></h1>
+<ul>
+<li><strong>2024-11-09</strong> :
+<ul>
+<li>Fixed navbar (renamed sections, fixed missing pages).</li>
+<li>Added a new kagami macro <strong>HTML_NEWEST_CONTENT</strong> :
+<ul>
+<li>Macro parses markdown pages for each subsection (notes/programming blogs) and generates a global HTML list for 5 newest posts (sorted by creation date).</li>
+</ul>
+</li>
+<li>Added <strong>Useful links/friends</strong> page.</li>
+<li>Added <strong>Site updates</strong> page.</li>
+<li>Found bug in kagami’s automatic index generation :
+<ul>
+<li>The current implementation of md_index() appears to have a bug where the generated list of markdown files in the index page of a folder has a raw crtime value appended to each list item instead of a human-readable date. Opened an <a href="https://github.com/microsounds/kagami/issues/3">issue</a>, if the creator doesn’t fix it, i’ll make my own kagami branch with a hotfix.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>2024-06-xx</strong> :
+<ul>
+<li>Initial website startup.</li>
+</ul>
+</li>
+</ul>
 <div class="footer">
 	<!-- <span class="right" style="padding-left: 5px">
 		<a title="visitors since 2022" href="https://digits.net">

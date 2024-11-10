@@ -1,12 +1,52 @@
-!/usr/bin/env sh
+#!/usr/bin/env sh
 
 # execute pre-run scripts
 # will probably make a kagami built-in feature later
-for f in "$DOC_ROOT/.scripts/"*; do echo "Pre-run: '$f'"; $f; done
+#for f in "$DOC_ROOT/.scripts/"*; do echo "Pre-run: '$f'"; $f; done
+
+#Gather newest content sorted by creation date
+#======================================================================================
+
+# Declare the output for our list of newest content
+HTML_NEWEST_CONTENT="<ul>"
+
+echo "$DOC_ROOT"
+
+FILES=$(find "$DOC_ROOT/.src/" -type f -name "*.md" ! -name "index.md" -exec stat --format="%W %n" {} + | sort -n -r | head -n 5)
+
+# Iterate through the files
+while IFS= read -r line; do
+    # Extract timestamp and file path
+    timestamp=$(echo "$line" | cut -d' ' -f1)
+    file_path=$(echo "$line" | cut -d' ' -f2-)
+
+    # Extract the parent directory (without the file name)
+    file_dir=/$(realpath --relative-to="$DOC_ROOT/.src/" "$file_path")
+
+    # Change the file extension from .md to .htm
+    file_dir="${file_dir%.md}.htm"
+
+    # Get the first line of the file
+    first_line=$(head -n 1 "$file_path")
+
+    # Remove the '#' symbol from the first line
+    cleaned_first_line=$(echo "$first_line" | sed 's/#//g')
+
+    # Escape special HTML characters in the first line (e.g. &, <, >, etc.)
+    escaped_first_line=$(echo "$cleaned_first_line" | sed 's/&/&amp;/g; s/</&lt;/g; s/>/&gt;/g; s/"/&quot;/g; s/'"'"'/&apos;/g')
+
+    # Append the list item to the html_output variable
+    HTML_NEWEST_CONTENT="$HTML_NEWEST_CONTENT<li><a href="$file_dir">$escaped_first_line</a></li>"
+done <<< "$FILES"
+
+# Close the HTML unordered list
+HTML_NEWEST_CONTENT="$HTML_NEWEST_CONTENT</ul>"
+#======================================================================================
 
 # unsetting document root will rewrite links starting from /
 unset DOC_ROOT
-DOC_ROOT = "~/Documents/Programming/likeadaydream/"
+#DOC_ROOT = "~/Documents/Programming/likeadaydream/"
+
 AUTHOR='daydreamer32'
 PC_NAME='fungusas'
 SITE_TITLE='like a daydream'

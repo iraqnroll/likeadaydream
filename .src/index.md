@@ -15,7 +15,7 @@ This is my little corner of the internet where I'll be posting stuff that I'm wo
 The website itself is a simple collection of markdown documents that get converted to static HTML pages by a tiny static microblog processor - [**kagami**](https://github.com/microsounds/kagami). No fancy backends, no bloated javascript frameworks, just Web 1.0-esque blogposting like God intended!
 
 ## Contact me
-By far the quickest way to get in touch with me is through Discord. Thanks to lanyard API, the website can fetch my discord presence in real time !\
+By far the quickest way to get in touch with me is through Discord. Thanks to lanyard API, the website can fetch my discord presence in real time !
 <div style="padding-top:20px"><span id="discord-name"></span> is currently : <span id="discord-status"></span>.</div>
 
 

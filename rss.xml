@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
+<lastBuildDate></lastBuildDate>
 <ttl>1</ttl>
 <generator>kagami v0.6.5 — static microblog processor</generator>
 <docs>http://blogs.law.harvard.edu/tech/rss</docs>
@@ -8,6 +9,16 @@
 <link>https://likeadaydream.lt</link>
 <title>like a daydream</title>
 <description>A gap between the heart and the mind</description>
+<item>
+<title>My first month on Constantiam</title>
+<description>
+<![CDATA[ Posted - 2024-11-10 Updated - Never For a pretty long time now I've been having the annual Minecraft itch. This, combined with the Youtube algorithm constantly showering me with copious amounts of MC Anarchy content, resulted in me finally deciding to try out anarchy. The only question was *where* ? Now for everyone not living under a rock in the Minecraft world, the obvious choice would be [2b2t.org](2b2t.org) of course. The server's ripe age of 13, the invaluable game [..]]]>
+<![CDATA[<br/>Read more at <a href="https://likeadaydream.lt/notes/1stMonthOnConstantiam.htm">https://likeadaydream.lt/notes/1stMonthOnConstantiam.htm</a>]]>
+</description>
+<link>https://likeadaydream.lt/notes/1stMonthOnConstantiam.htm</link>
+<guid isPermaLink="true">https://likeadaydream.lt/notes/1stMonthOnConstantiam.htm</guid>
+<pubDate>Sat, 09 Nov 2024 00:00:00 +0200</pubDate>
+</item>
 </channel>
 </rss>
 </channel>
